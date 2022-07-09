@@ -1,8 +1,8 @@
 {
-  "name": "temp",
+  "name": "duck-awareness",
   "version": "0.1.0",
   "bin": {
-    "temp": "bin/temp.js"
+    "duck-awareness": "bin/duck-awareness.js"
   },
   "scripts": {
     "build": "tsc",
