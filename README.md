@@ -2,7 +2,9 @@
 
 Collaborative stuff.
 
-## Dev Instructions
+## Prerequisites
+
+### Installed software
 
 This project uses AWS CDK so it needs NodeJS, I recommend using [nvm](https://nvm.sh/) to manage your node version.
 
@@ -15,6 +17,8 @@ node --version
 
 # v16.16.0
 ```
+
+Install the AWS CLI
 
 We will use AWS CDK to manage infrastructure easily.
 
@@ -35,6 +39,17 @@ go version
 ```
 
 
-## AWS Configuration
+### AWS Configuration
 
-We wille be using the `eu-west-2` region (London) so make sure to configure your `~/.aws/config` [accordingly](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting-region) and your [credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting).
+We will be using the `eu-west-2` region (London) so make sure to configure your `~/.aws/config` [accordingly](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting-region) and your [credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html#setup-credentials-setting).
+
+
+## Instructions
+
+```
+npm install
+
+npm test
+
+cdk synth
+```
