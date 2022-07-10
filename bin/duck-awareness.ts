@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import * as cdk from 'aws-cdk-lib';
+import { App } from 'aws-cdk-lib';
 import { ApiStack } from '../lib/api-stack';
 
-const app = new cdk.App();
+const app = new App();
 new ApiStack(app, 'DuckAwareness-APIStack');
