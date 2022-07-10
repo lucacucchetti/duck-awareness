@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "run_local": "go run ./lib/app/api-handler/main.go --localRun"
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
