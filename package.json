@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy:gh-oidc-provider": "cdk deploy AwsGithubOidc",
+    "deploy:oidp": "cdk deploy AwsGithubOidc",
     "deploy:production": "cdk deploy DuckAwareness-APIStack --require-approval never"
   },
   "devDependencies": {

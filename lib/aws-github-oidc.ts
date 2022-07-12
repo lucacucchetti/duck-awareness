@@ -13,11 +13,11 @@ export class AwsGithubOidc extends Stack {
             clientIds: ['https://github.com/lucacucchetti','sts.amazonaws.com']
         })
 
-        const ghFederatedPrincipal = new iam.FederatedPrincipal(ghOidcProvider.openIdConnectProviderArn, {
+        const ghFederatedPrincipal = new iam.FederatedPrincipal(ghOidcProvider.openIdConnectProviderArn, {            
             'StringLike': {
                 'token.actions.githubusercontent.com:sub': 'repo:lucacucchetti/duck-awareness:*'
             }
-        })
+        }, 'sts:AssumeRoleWithWebIdentity')
 
         const ghRole = new iam.Role(this, 'github-actions', {
             description: 'used by Github Actions to deploy the application stack',
