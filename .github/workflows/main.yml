@@ -4,6 +4,10 @@ on:
   push:
     branches: [3-add-cicd]
 
+env:
+  AWS_REGION: eu-west-2
+  CI: true
+
 jobs:
 
   build:
@@ -25,4 +29,30 @@ jobs:
       - run: npm test
       - run: npm run build
 
+  deploy:
+    name: Deploy
+    runs-on: ubuntu/latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_CI_ROLE_ARN }}
+
+      - name: Verify identity
+        run: aws sts get-caller-identity
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
       
+      - run: npm install
+      - run: npm run deploy:production
