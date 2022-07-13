@@ -2,7 +2,7 @@ name: main
 
 on:
   push:
-    branches: [3-add-cicd]
+    branches: [master]
 
 env:
   AWS_REGION: eu-west-2
