@@ -26,6 +26,15 @@ export class AwsGithubOidc extends Stack {
             managedPolicies: [
                 iam.ManagedPolicy.fromManagedPolicyArn(this, 'github-actions-read-only-access' ,'arn:aws:iam::aws:policy/ReadOnlyAccess')
             ],
+            inlinePolicies: {
+                AllowAssumeCdkRole: new iam.PolicyDocument({
+                    statements: [new iam.PolicyStatement({
+                        actions: ['sts:AssumeRole'],
+                        effect: iam.Effect.ALLOW,
+                        resources: [`arn:aws:iam::${this.account}:role/cdk*`]
+                    })]
+                })
+            }
         })
 
         const h = new CfnOutput(this, 'githubActionsRoleArn', {
