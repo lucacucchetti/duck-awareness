@@ -1,13 +1,15 @@
 package main
 
 import (
+	"context"
+	controllers "example/hello/src/controllers"
+	. "example/hello/src/entities"
 	"flag"
 	"log"
-	"context"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/awslabs/aws-lambda-go-api-proxy/gin"
+	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,14 +24,12 @@ func main() {
 	localRun := flag.Bool("localRun", false, "whether it is a local run and should use test env")
 	flag.Parse()
 
+	var repo Repository = MockRepository{}
+
 	// stdout and stderr are sent to AWS CloudWatch Logs
 	log.Printf("Gin cold start")
 	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "You are on the Duck Awareness path now...",
-		})
-	})
+	registerEndpoints(router, repo)
 
 	ginLambda = ginadapter.New(router)
 
@@ -41,3 +41,13 @@ func main() {
 	}
 }
 
+func registerEndpoints(router *gin.Engine, repo Repository) {
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "You are on the Duck Awareness path now...",
+		})
+	})
+
+	router.GET("/board/:boardId", controllers.GetBoard(repo))
+	router.GET("/text_note/:noteId", controllers.GetTextNote(repo))
+}

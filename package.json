@@ -9,6 +9,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
+    "deploy:oidp": "cdk deploy AwsGithubOidc",
+    "deploy:production": "cdk deploy DuckAwareness-APIStack --require-approval never",
     "run_local": "go run ./lib/app/api-handler/main.go --localRun"
   },
   "devDependencies": {
