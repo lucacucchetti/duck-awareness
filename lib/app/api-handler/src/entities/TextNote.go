@@ -12,7 +12,7 @@ func (n TextNote) Id() ResourceID {
 	return n.id
 }
 
-func (n *TextNote) GetTitle() string {
+func (n *TextNote) Title() string {
 	return n.title
 }
 

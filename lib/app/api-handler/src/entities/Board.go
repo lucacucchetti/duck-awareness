@@ -23,8 +23,8 @@ func (b *Board) GetName() string {
 
 func (b Board) MarshalJSON() ([]byte, error) {
 	resourcesIds := []string{}
-	for _, resPtr := range b.resources {
-		res := *resPtr
+	for _, resource := range b.resources {
+		res := *resource
 		resourcesIds = append(resourcesIds, res.Id())
 	}
 	return json.Marshal(&struct {
